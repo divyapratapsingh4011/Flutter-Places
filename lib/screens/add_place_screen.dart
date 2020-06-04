@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
 import '../providers/great_places.dart';
+import '../widgets/location_input.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const routename = '/add-place';
@@ -22,11 +23,25 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
 
   void savePlace() {
     if (_titlecontroller.text.isEmpty || _pickedImage == null) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Provide Valid Inputs'),
-          duration: Duration(seconds: 2),
-          elevation: 10,
+      // Scaffold.of(ctx).showSnackBar(
+      //   SnackBar(
+      //     content: Text('Provide Valid Inputs'),
+      //     duration: Duration(seconds: 2),
+      //     elevation: 10,
+      //   ),
+      // );
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          actions: <Widget>[
+            FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Dismiss"))
+          ],
+          content: Text('Provide Valid inputs'),
+          title: Text('Invalid Inputs'),
         ),
       );
       return;
@@ -60,6 +75,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       height: 10,
                     ),
                     ImageInput(_selectImage),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    LocationInput(),
                   ],
                 ),
               ),

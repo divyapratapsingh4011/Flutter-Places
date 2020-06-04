@@ -60,9 +60,11 @@ class _ImageInputState extends State<ImageInput> {
               onPressed: () {
                 _takePicture();
               },
-              label: Text('Take a Picture'),
+              label: Text(
+                'Take a Picture',
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
               icon: Icon(Icons.camera),
-              color: Theme.of(context).accentColor,
             ),
           ),
         ),
